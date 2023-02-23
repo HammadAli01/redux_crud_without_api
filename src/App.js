@@ -3,7 +3,7 @@ import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import tableColumn from "./data";
 import { useState, useEffect } from "react";
-import { deleteUser, addUser, updateUser } from "./redux/actions";
+import { userDeleted, userAdded, userUpdated } from "./redux/actions";
 function App() {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.data);
@@ -18,7 +18,7 @@ function App() {
   };
   const [newData, setNewData] = useState(initialNewData);
   const handleDelete = (userId) => {
-    dispatch(deleteUser(userId));
+    dispatch(userDeleted(userId));
   };
   const handleInputChange = (e) => {
     setNewData({ ...newData, [e.target.name]: e.target.value });
@@ -26,7 +26,7 @@ function App() {
   const handleSubmitButton = () => {
     if (newData.exist) {
       dispatch(
-        updateUser(
+        userUpdated(
           {
             id: newData.id,
             name: newData.name,
@@ -40,7 +40,7 @@ function App() {
     } else {
       console.log("newdata is =>", newData);
       dispatch(
-        addUser({
+        userAdded({
           id: users.length + 1,
           name: newData.name,
           address: newData.address,
