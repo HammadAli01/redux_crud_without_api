@@ -5,16 +5,20 @@ import * as types from "./actionType";
 // });
 export const userDeleted = (id) => ({
   type: types.DELETE_USER,
-  payload: id,
+  id,
 });
 export const userAdded = (user) => ({
   type: types.ADD_USER,
-  payload: user,
+  user,
 });
 
 export const userUpdated = (user, id) => ({
   type: types.UPDATE_USER,
-  payload: { user, id },
+  user,
+});
+export const getSingleUser = (id) => ({
+  type: types.GET_SINGLE_USER,
+  id,
 });
 // export const loadUsers = () => {
 //   return function (dispatch, getState) {

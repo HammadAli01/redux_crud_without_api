@@ -1,9 +1,9 @@
 const tableColumn = [
-  { columnName: "Id" },
-  { columnName: "Name" },
-  { columnName: "Email" },
-  { columnName: "Contact" },
-  { columnName: "Address" },
-  { columnName: "Action" },
+  { columnName: "id" },
+  { columnName: "name" },
+  { columnName: "email" },
+  { columnName: "contact" },
+  { columnName: "address" },
+  { columnName: "action" },
 ];
 export default tableColumn;

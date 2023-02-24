@@ -1,74 +1,90 @@
 import logo from "./logo.svg";
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Adduser } from "./pages/Adduser";
+import { Edituser } from "./pages/Edituser";
 import { useDispatch, useSelector } from "react-redux";
 import tableColumn from "./data";
 import { useState, useEffect } from "react";
 import { userDeleted, userAdded, userUpdated } from "./redux/actions";
 function App() {
-  const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.data);
-  const [newColumn, setNewColumn] = useState("");
-  const [showField, setShowField] = useState(false);
-  const initialNewData = {
-    name: "",
-    address: "",
-    contact: "",
-    email: "",
-    exist: false,
-  };
-  const [newData, setNewData] = useState(initialNewData);
-  const handleDelete = (userId) => {
-    dispatch(userDeleted(userId));
-  };
-  const handleInputChange = (e) => {
-    setNewData({ ...newData, [e.target.name]: e.target.value });
-  };
-  const handleSubmitButton = () => {
-    if (newData.exist) {
-      dispatch(
-        userUpdated(
-          {
-            id: newData.id,
-            name: newData.name,
-            address: newData.address,
-            contact: newData.contact,
-            email: newData.email,
-          },
-          newData.id
-        )
-      );
-    } else {
-      console.log("newdata is =>", newData);
-      dispatch(
-        userAdded({
-          id: users.length + 1,
-          name: newData.name,
-          address: newData.address,
-          contact: newData.contact,
-          email: newData.email,
-        })
-      );
-      //dispatch for add
-      // setData([...data, { ...newData, id: data.length + 1 }]);
-      // setNewData(initialNewData);
-    }
-  };
-  const handleEdit = (user) => {
-    setNewData({ ...user, ["exist"]: true });
-  };
-  const handleAddNewColumn = (e) => {
-    if (e.key === "Enter") {
-      tableColumn.push({ columnName: newColumn });
-      setNewColumn("");
-      setShowField(false);
-    }
-  };
-  useEffect(() => {
-    console.log("called again  users", users);
-  }, [users]);
   return (
     <div className="App">
-      <div className="input-group">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/addUser" element={<Adduser />} />
+        <Route path="/editUser/:id" element={<Edituser />} />
+      </Routes>
+    </div>
+  );
+}
+
+export default App;
+
+/*
+// const dispatch = useDispatch();
+  // const { users } = useSelector((state) => state.data);
+  // const [newColumn, setNewColumn] = useState("");
+  // const [showField, setShowField] = useState(false);
+  // const initialNewData = {
+  //   name: "",
+  //   address: "",
+  //   contact: "",
+  //   email: "",
+  //   exist: false,
+  // };
+  // const [newData, setNewData] = useState(initialNewData);
+  // const handleDelete = (userId) => {
+  //   dispatch(userDeleted(userId));
+  // };
+  // const handleInputChange = (e) => {
+  //   setNewData({ ...newData, [e.target.name]: e.target.value });
+  // };
+  // const handleSubmitButton = () => {
+  //   if (newData.exist) {
+  //     dispatch(
+  //       userUpdated(
+  //         {
+  //           id: newData.id,
+  //           name: newData.name,
+  //           address: newData.address,
+  //           contact: newData.contact,
+  //           email: newData.email,
+  //         },
+  //         newData.id
+  //       )
+  //     );
+  //   } else {
+  //     console.log("newdata is =>", newData);
+  //     dispatch(
+  //       userAdded({
+  //         id: users.length + 1,
+  //         name: newData.name,
+  //         address: newData.address,
+  //         contact: newData.contact,
+  //         email: newData.email,
+  //       })
+  //     );
+  //     //dispatch for add
+  //     // setData([...data, { ...newData, id: data.length + 1 }]);
+  //     // setNewData(initialNewData);
+  //   }
+  // };
+  // const handleEdit = (user) => {
+  //   setNewData({ ...user, ["exist"]: true });
+  // };
+  // const handleAddNewColumn = (e) => {
+  //   if (e.key === "Enter") {
+  //     tableColumn.push({ columnName: newColumn });
+  //     setNewColumn("");
+  //     setShowField(false);
+  //   }
+  // };
+  // useEffect(() => {
+  //   console.log("called again  users", users);
+  // }, [users]);
+ <div className="input-group">
         <input
           name="name"
           className="input-field"
@@ -176,8 +192,4 @@ function App() {
           })}
         </tbody>
       </table>
-    </div>
-  );
-}
-
-export default App;
+*/
