@@ -6,6 +6,7 @@ export const Edituser = () => {
   const initialData = { name: "", email: "", contact: "", address: "" };
   const [data, setData] = useState(initialData);
   const { user, users } = useSelector((state) => state.data);
+  console.log("user got in edit is ", user);
   const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -22,11 +23,12 @@ export const Edituser = () => {
     navigate("/");
   };
   useEffect(() => {
-    setData(JSON.parse(window.localStorage.getItem("user")));
+    setData(user[0]);
+    //setData(JSON.parse(window.localStorage.getItem("user")));
     //dispatch(getSingleUser(id));
   }, []);
   useEffect(() => {
-    console.log("user in useeffect is ", data);
+    console.log("user updated in useeffect is ", data);
   }, [data]);
   //   useEffect(() => {
   //     console.log("user got is", user);

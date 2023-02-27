@@ -13,8 +13,10 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/addUser" element={<Adduser />} />
-        <Route path="/editUser/:id" element={<Edituser />} />
+        <Route path="/edituser/:id" element={<Edituser />} />
+        <Route path="/adduser" element={<Adduser />} />
+
+        {/* <Route path="/editUser/:id" element={<Edituser />} /> */}
       </Routes>
     </div>
   );

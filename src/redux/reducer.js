@@ -52,7 +52,11 @@ const usersReducers = (state = initialState, action) => {
     case types.GET_SINGLE_USER:
       return {
         ...state,
-        user: state.users.find((person) => person.id === action.id),
+        user: state.users.filter((person) => {
+          if (person.id === action.id) {
+            return person;
+          }
+        }),
       };
     default:
       return state;
