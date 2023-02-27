@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { userDeleted } from "../redux/actions";
+import { getSingleUser, userDeleted } from "../redux/actions";
 import tableColumn from "../data";
 export const Home = () => {
   const dispatch = useDispatch();
@@ -21,6 +21,7 @@ export const Home = () => {
     }
   };
   const handleEdit = (user) => {
+    dispatch(getSingleUser(user.id));
     window.localStorage.setItem("user", JSON.stringify(user));
     navigate(`/Edituser/${user.id}`);
   };
